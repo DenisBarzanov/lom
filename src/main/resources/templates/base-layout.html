@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<!--
+	Binary by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:include="fragments/head" th:with="pageTitle='Lom Medicine'"></head>
+    <body th:inline="text">
+
+        <!-- Header -->
+        <header th:include="fragments/header"></header>
+
+        <!-- Nav -->
+        <th:block th:include="fragments/nav">
+        </th:block>
+
+        <!-- View -->
+        <th:block th:include="${view}">
+        </th:block>
+
+        <!-- Footer -->
+        <th:block th:include="fragments/footer">
+        </th:block>
+
+        <!-- Scripts -->
+        <th:block th:include="fragments/scripts">
+        </th:block>
+
+    </body>
+</html>

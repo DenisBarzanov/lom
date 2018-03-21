@@ -1,0 +1,29 @@
+<section>
+    <div>
+        <form th:action="@{/admin/article/{id}/delete(id=${article.id})}" method="POST">
+            <div>
+                <label for="title">Заглавие</label>
+                <input type="text" id="title" name="title" th:value="${article.title}" disabled="disabled"/>
+
+                <label for="imgURL">URL на картина</label>
+                <input id="imgURL" name="imgURL" th:value="${article.imgURL}" disabled="disabled"/>
+
+                <label for="content">Съдържание</label>
+                <textarea id="content" name="content" disabled="disabled">
+                    [[${article.content}]]
+                </textarea>
+
+                <div>
+                    <p>Снимка:</p>
+                    <div>
+                        <img th:src="${article.imgURL}"/>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit">Изтрий</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
