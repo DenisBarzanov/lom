@@ -3,7 +3,7 @@
 </th:block>
 
 <th:block th:each="article : ${articles}">
-    <article id="1" class="post style1">
+    <article th:id="${article.id}" class="post style1">
         <div class="image">
             <img th:src="${article.imgURL}" alt="Article image" data-position="75% center" />
         </div>
@@ -18,10 +18,10 @@
                     <li><a th:href="@{/article/{id}(id=${article.id})}" class="button alt">Прочетете повече</a></li>
                 </ul>
             </div>
-            <!--<div class="postnav">-->
-                <!--<a href="#" class="scrolly prev"><span class="icon fa-chevron-up"></span></a>-->
-                <!--<a href="#2" class="scrolly next"><span class="icon fa-chevron-down"></span></a>-->
-            <!--</div>-->
+            <div class="postnav">
+                <a th:href="@{'#' + ${article.id - 1}}" class="scrolly prev"><span class="icon fa-chevron-up"></span></a>
+                <a th:href="@{'#' + ${article.id + 1}}" class="scrolly next"><span class="icon fa-chevron-down"></span></a>
+            </div>
         </div>
     </article>
 </th:block>
