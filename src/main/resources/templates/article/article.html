@@ -1,12 +1,16 @@
 <section id="main">
     <div class="inner">
-        <div class="image left">
-            <img th:src="${article.imgURL}" alt="Article image" />
-        </div>
         <header>
             <h1>[[${article.title}]]</h1>
             <!--<p class="info">3 days ago by <a href="#">Jane Doe</a></p>-->
         </header>
-        <p>[[${article.content}]]</p>
+        <th:block th:each="imgURL, iterStat : ${article.imgURLs}">
+            <p>
+                <span class="image" th:classappend="${iterStat.odd} ? left : right">
+                    <img th:src="${imgURL}" alt="Article image"/>
+                </span>
+                [[${contents[iterStat.index]}]]
+            </p>
+        </th:block>
     </div>
 </section>

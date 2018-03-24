@@ -1,25 +1,21 @@
 <section>
     <div>
-        <form th:action="@{/admin/article/{id}/edit(id=${article.id})}" method="POST">
+        <form th:action="@{/admin/article/{id}/edit(id=${article.id})}"
+              method="POST">
             <div>
                 <label for="title">Заглавие</label>
                 <input type="text" id="title" name="title" th:value="${article.title}" />
 
-                <label for="imgURL">URL на картина</label>
-                <input id="imgURL" name="imgURL" th:value="${article.imgURL}"/>
-
-                <label for="content">Съдържание</label>
-                <textarea id="content" name="content" >
-                    [[${article.content}]]
+                <label for="imgURLs">URL-ли на картините</label>
+                <textarea id="imgURLs" name="imgURLs">
+                    [[${imgUrlString}]]
                 </textarea>
 
-                <div>
-                    <p>Снимка:</p>
-                    <div>
-                        <img th:src="${article.imgURL}"/>
-                    </div>
-                </div>
-
+                <label for="content">Съдържание</label>
+                <textarea id="content" name="content" th:value="${article.content}">
+                    [[${article.content}]]
+                </textarea>
+                
                 <div>
                     <button type="submit">Редактирай</button>
                 </div>

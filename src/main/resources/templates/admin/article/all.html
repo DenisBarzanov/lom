@@ -4,7 +4,7 @@
 <th:block th:each="article : ${articles}">
     <article th:id="${article.id}" class="post style1">
         <div class="image">
-            <img th:src="${article.imgURL}" alt="Article image" data-position="75% center" />
+            <img th:src="${article.imgURLs[0]}" alt="Article image" data-position="75% center" />
         </div>
         <div class="content">
             <div class="inner">

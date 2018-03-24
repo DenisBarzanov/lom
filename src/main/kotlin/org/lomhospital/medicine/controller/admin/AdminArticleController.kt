@@ -3,6 +3,8 @@ package org.lomhospital.medicine.controller.admin
 import org.lomhospital.medicine.bindingModel.ArticleBindingModel
 import org.lomhospital.medicine.entity.Article
 import org.lomhospital.medicine.repository.ArticleRepository
+import org.lomhospital.medicine.util.imageUrlList
+import org.lomhospital.medicine.util.toUrlString
 import javax.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -39,17 +41,20 @@ constructor(private val articleRepository: ArticleRepository) {
             }
             return "base-layout"
         }
-        val article = Article(articleBindingModel.title, articleBindingModel.content, articleBindingModel.imgURL)
+        //val imageUrls = imageUrlList(articleBindingModel.imgURLs)
+        val article = Article(articleBindingModel.title, articleBindingModel.content, imageUrlList(articleBindingModel.imgURLs))
         this.articleRepository.saveAndFlush(article)
         return "redirect:/$PATH_ADMIN_ARTICLE/all"
     }
 
     @GetMapping("/{id}/edit")
     fun edit(model: Model, @PathVariable id: Int): String {
-        val article = this.articleRepository.getOne(id) ?: return "redirect:/${PATH_ADMIN_ARTICLE}/all"
+        val article = this.articleRepository.getOne(id) //?: return "redirect:/${PATH_ADMIN_ARTICLE}/all"
+        val imgUrlString = article.imgURLs.toUrlString()
         model.run {
             addAttribute("article", article)
             addAttribute("view", "$PATH_ADMIN_ARTICLE/edit")
+            addAttribute("imgUrlString", imgUrlString)
         }
         return "base-layout"
     }
@@ -64,12 +69,12 @@ constructor(private val articleRepository: ArticleRepository) {
             }
             return "base-layout"
         }
-        val article = this.articleRepository.getOne(id) ?: return "redirect:/${PATH_ADMIN_ARTICLE}/all"
+        val article = this.articleRepository.getOne(id) //?: return "redirect:/${PATH_ADMIN_ARTICLE}/all"
 
         with(article) {
             title = articleBindingModel.title
             content = articleBindingModel.content
-            imgURL = articleBindingModel.imgURL
+            imgURLs = imageUrlList(articleBindingModel.imgURLs)
         }
 
         this.articleRepository.saveAndFlush(article)
@@ -78,17 +83,19 @@ constructor(private val articleRepository: ArticleRepository) {
 
     @GetMapping("/{id}/delete")
     fun delete(model: Model, @PathVariable id: Int): String {
-        val article = this.articleRepository.getOne(id) ?: return "redirect:/${PATH_ADMIN_ARTICLE}/all"
-        with(model) {
+        val article = this.articleRepository.getOne(id) //?: return "redirect:/${PATH_ADMIN_ARTICLE}/all"
+        val imgUrlString = article.imgURLs.toUrlString()
+        model.run {
             addAttribute("article", article)
             addAttribute("view", "$PATH_ADMIN_ARTICLE/delete")
+            addAttribute("imgUrlString", imgUrlString)
         }
         return "base-layout"
     }
 
     @PostMapping("/{id}/delete")
     fun deleteProcess(@PathVariable id: Int): String {
-        val article = this.articleRepository.getOne(id) ?: return "redirect:/${PATH_ADMIN_ARTICLE}/all"
+        val article = this.articleRepository.getOne(id) //?: return "redirect:/${PATH_ADMIN_ARTICLE}/all"
         this.articleRepository.delete(article)
         this.articleRepository.flush()
         return "redirect:/$PATH_ADMIN_ARTICLE/all"

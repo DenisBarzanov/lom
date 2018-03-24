@@ -1,24 +1,20 @@
 <section>
     <div>
-        <form th:action="@{/admin/article/{id}/delete(id=${article.id})}" method="POST">
+        <form th:action="@{/admin/article/{id}/delete(id=${article.id})}"
+              method="POST" th:object="${article}">
             <div>
                 <label for="title">Заглавие</label>
-                <input type="text" id="title" name="title" th:value="${article.title}" disabled="disabled"/>
+                <input type="text" th:field="*{title}" disabled="disabled"/>
 
-                <label for="imgURL">URL на картина</label>
-                <input id="imgURL" name="imgURL" th:value="${article.imgURL}" disabled="disabled"/>
-
-                <label for="content">Съдържание</label>
-                <textarea id="content" name="content" disabled="disabled">
-                    [[${article.content}]]
+                <label for="imgURLs">URL-ли на картините</label>
+                <textarea id="imgURLs" name="imgURLs" disabled="disabled">
+                    [[${imgUrlString}]]
                 </textarea>
 
-                <div>
-                    <p>Снимка:</p>
-                    <div>
-                        <img th:src="${article.imgURL}"/>
-                    </div>
-                </div>
+                <label for="content">Съдържание</label>
+                <textarea th:field="*{content}" disabled="disabled">
+                    [[${content}]]
+                </textarea>
 
                 <div>
                     <button type="submit">Изтрий</button>

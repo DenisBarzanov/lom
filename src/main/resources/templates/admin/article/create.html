@@ -1,16 +1,17 @@
 <h1>Създай Статия</h1>
 <section>
     <div>
-        <form th:action="@{/admin/article/create}" method="POST">
+        <form th:action="@{/admin/article/create}"
+              method="POST" th:object="${article}">
             <div>
                 <label for="title">Заглавие</label>
-                <input type="text" id="title" name="title" th:value="${article.title}" />
+                <input type="text" th:field="*{title}"/>
 
-                <label for="imgURL">URL на картина</label>
-                <input id="imgURL" name="imgURL" th:value="${article.imgURL}"/>
+                <label for="imgURLs">URL-ли на картините</label>
+                <textarea id="imgURLs" name="imgURLs" placeholder="URL-ли на картините"></textarea>
 
                 <label for="content">Съдържание</label>
-                <textarea id="content" name="content" th:value="${article.content}" placeholder="Съдържание..."></textarea>
+                <textarea th:field="*{content}" placeholder="Съдържание..."></textarea>
 
                 <div>
                     <button type="submit">Създай</button>

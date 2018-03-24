@@ -1,6 +1,7 @@
 package org.lomhospital.medicine.controller
 
 import org.lomhospital.medicine.repository.ArticleRepository
+import org.lomhospital.medicine.util.splitInto
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -25,7 +26,8 @@ constructor(private val articleRepository: ArticleRepository) {
         model.addAttribute("view", "$ARTICLE_PATH/article")
         val article = this.articleRepository.getOne(id)
         model.addAttribute("article", article)
+        val contents = article.content splitInto article.imgURLs.size
+        model.addAttribute("contents", contents)
         return "base-layout"
     }
-
 }
