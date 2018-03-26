@@ -1,5 +1,5 @@
 <div>
-    <button style="text-align: center;" onclick="location.href = '/admin/article/create'">Създай</button>
+    <button onclick="location.href = '/admin/article/create'">Създай</button>
 </div>
 <th:block th:each="article : ${articles}">
     <article th:id="${article.id}" class="post style1">
