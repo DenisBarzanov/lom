@@ -22,4 +22,10 @@ window.onload = function() {
         nextArticle.classList.add('alt');
     }
     truncateAllParagraphs();
+
+    let paragraphs = document.querySelectorAll('p');
+    paragraphs.forEach(function(paragraph) {
+        paragraph.style.whiteSpace='pre-line';
+    });
+
 };
