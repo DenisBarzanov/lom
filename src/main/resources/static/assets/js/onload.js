@@ -6,5 +6,5 @@ function formatParagraphAll() {
 }
 
 window.onload = function() {
-    formatParagraphAll()
+    formatParagraphAll();
 };

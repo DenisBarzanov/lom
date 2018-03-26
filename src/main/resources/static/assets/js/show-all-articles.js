@@ -23,7 +23,7 @@ function styleArticles() {
     }
 }
 
-window.onload = function() {
+$(document).ready(function() {
     styleArticles();
     truncateAllParagraphs();
-};
+});
