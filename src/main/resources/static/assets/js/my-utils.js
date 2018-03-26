@@ -2,7 +2,7 @@ function randomChoice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
-window.onload = function() {
+function styleArticles() {
     let articles = document.getElementsByClassName('style1');
     for (let i = 0; i < articles.length; i+=2) {
         let article = articles[i];
@@ -21,11 +21,9 @@ window.onload = function() {
         nextArticle.classList.add('invert');
         nextArticle.classList.add('alt');
     }
+}
+
+window.onload = function() {
+    styleArticles();
     truncateAllParagraphs();
-
-    let paragraphs = document.querySelectorAll('p');
-    paragraphs.forEach(function(paragraph) {
-        paragraph.style.whiteSpace='pre-line';
-    });
-
 };
